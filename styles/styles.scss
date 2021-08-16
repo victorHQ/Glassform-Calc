@@ -1,0 +1,121 @@
+/* === Reset Global === */ 
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: Gotham Rounded, sans-serif;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #091921;
+    min-height: 100vh;
+
+    &::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(#E91E63, #FFC107);
+        clip-path: circle(22% at 30% 20%);
+    }
+
+    &::after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(#fff, #da00ff);
+        clip-path: circle(20% at 70% 90%);
+    }
+}
+
+.container {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    overflow: hidden;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+
+    .calculator-grid{
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-template-columns: repeat(4, 100px);
+        grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+    
+        .output{
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            flex-direction: column;
+            padding: 10px;
+            word-wrap: break-word;
+            word-break: break-all;
+    
+            border: none;
+            background: transparent;
+            color: #fff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        
+            .previous-operand{
+                color: rgba(255, 255, 255, .75);
+                font-size: 1.5rem;
+            }
+        
+            .current-operand{
+                color: white;
+                font-size: 2.5rem;
+            }
+        }
+    
+        .span-two{
+            grid-column: span 2;
+            background: rgba(0, 0, 0, 0.283)
+        }
+    
+        > button {
+            cursor: pointer;
+            font-size: 20px;
+            outline: none;
+            background:rgba(0, 0, 0, .05);
+            border: none;
+    
+            color: white;
+            user-select: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.5s;
+            
+            &:hover{
+                transition: 0s;
+                background-color: rgba(255, 255, 255, .05);
+            }
+    
+            &:active{
+                background: #14FF47;
+                color: #192F00;
+                font-size: 24px;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+
+
+
+
