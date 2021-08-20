@@ -24,6 +24,7 @@
   <img src="https://img.shields.io/static/v1?label=&message=HTML5&color=ed7c5c&style=for-the-badge&logo=html5"/>
   <img src="https://img.shields.io/static/v1?label=&message=SASS&color=f0a5ca&style=for-the-badge&logo=sass"/>
   <img src="https://img.shields.io/static/v1?label=&message=JavaScript&color=0d0c0c&style=for-the-badge&logo=JavaScript"/>
+  <a title="LIB - JS" href="https://micku7zu.github.io/vanilla-tilt.js/"><img src="https://img.shields.io/static/v1?label=&message=VanillaTilt&color=blue&style=for-the-badge"/></a>
 </p>
 
 <h2 id="project" align="center">
