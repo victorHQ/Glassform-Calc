@@ -120,9 +120,10 @@ class Calculator {
 
     verifyEnterAndDelete(keys){
         const enterDelete = ['Enter', 'Delete']
-        
+
         if(keys === enterDelete[0]) this.compute()
         else if(keys === enterDelete[1]) this.delete()
+
     }
 
     pressKeyboard(){
@@ -132,7 +133,7 @@ class Calculator {
             // These buttons cause a bug that when inserted in the event by "keydown" the calculator triggers "clear()" and locks.
             // Esses botões causam um bug que ao serem inseridos no evento pelo "keydown" a calculadora aciona o "clear()" e trava.
             let checkBugButtons = (arr, event) => arr.includes(event)
-            const bugButtons = ['CapsLock', 'Backspace', 'Control', 'ScrollLock']
+            const bugButtons = ['CapsLock', 'Backspace', 'Control', 'ScrollLock', 'Space']
 
             if(checkBugButtons(bugButtons, keys)) return
 
@@ -142,6 +143,19 @@ class Calculator {
             this.verifyEnterAndDelete(keys)
             this.updateDisplay()
         })
+    }
+
+    // =================================== Remove Focus from buttons ===================================
+    blurInput() {
+        window.onload = function () {
+            function blur(){
+                this.blur();
+            }
+    
+            for(let i = 0; i < buttons.length; i++){
+                buttons[i].addEventListener('click', blur)
+            }
+        }
     }
 
     // =================================== Modal Error ===================================
@@ -161,6 +175,7 @@ class Calculator {
 }
 
 // =================================== HTML Variables ===================================
+const buttons = document.querySelectorAll('button')
 const numberButtons = document.querySelectorAll('[data-number]')
 const operationButtons = document.querySelectorAll('[data-operation]')
 const equalsButton = document.querySelector('[data-equals]')
@@ -172,6 +187,7 @@ const currentOperandTextElement = document.querySelector('[data-current-operand]
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
 
 calculator.pressKeyboard()
+calculator.blurInput()
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -195,11 +211,10 @@ equalsButton.addEventListener('click', button => {
 allClearButton.addEventListener('click', button => {
     calculator.clear()
     calculator.updateDisplay()
+    
 })
 
 deleteButton.addEventListener('click', button => {
     calculator.delete()
     calculator.updateDisplay()
 })
-
-
