@@ -24,11 +24,11 @@ class Calculator {
     }
 
     chooseOperation(operation){
+        if(operation === '/') operation = operationsArray[3]
         if (this.currentOperand === '') return
         if (this.previousOperand !== '') {
             this.compute()
         }
-        if(operation === '/') operation = operationsArray[3]
         this.operation = operation
         this.previousOperand = this.currentOperand
         this.currentOperand = ''
@@ -140,6 +140,7 @@ class Calculator {
             this.verifyInputNumbers(keys)
             this.verifyInputOperation(keys)
             this.verifyEnterAndDelete(keys)
+            this.updateDisplay()
         })
     }
 
@@ -157,7 +158,6 @@ class Calculator {
             .classList
             .remove('active')
     }    
-
 }
 
 // =================================== HTML Variables ===================================
