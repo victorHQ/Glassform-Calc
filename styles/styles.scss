@@ -1,5 +1,19 @@
-/* === Reset Global === */ 
-*, *::before, *::after {
+// Variables ========================
+$dark-background: rgb(12, 13, 14);
+$green: rgb(135, 221, 103);
+$font-white: rgb(232, 230, 227);
+
+// Mixins =======================
+@mixin organize-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* === Reset Global === */
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     font-family: Gotham Rounded, sans-serif;
     font-weight: normal;
@@ -7,14 +21,15 @@
     margin: 0;
 }
 
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #091921;
+/* BODY ======================== */
+
+body {
+    @include organize-center;
+
+    background-color: rgb(7, 20, 26);
     min-height: 100vh;
 
-    &::before{
+    &::before {
         content: '';
         position: absolute;
         top: 0;
@@ -25,7 +40,7 @@ body{
         clip-path: circle(22% at 30% 20%);
     }
 
-    &::after{
+    &::after {
         content: '';
         position: absolute;
         top: 0;
@@ -37,25 +52,27 @@ body{
     }
 }
 
+/* MAIN ======================== */
+
 .container {
     position: relative;
-    background: rgba(255, 255, 255, 0.05);
+    background-color: rgba(24, 26, 27, 0.05);
     border-radius: 6px;
     overflow: hidden;
     z-index: 10;
     backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.153);
+    border-left: 1px solid rgba(255, 255, 255, 0.153);
     box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
 
-    .calculator-grid{
+    .calculator-grid {
         display: grid;
         justify-content: center;
         align-content: center;
         grid-template-columns: repeat(4, 100px);
         grid-template-rows: minmax(120px, auto) repeat(5, 100px);
-    
-        .output{
+
+        .output {
             grid-column: 1 / -1;
             display: flex;
             align-items: flex-end;
@@ -64,49 +81,49 @@ body{
             padding: 10px;
             word-wrap: break-word;
             word-break: break-all;
-    
+
             border: none;
             background: transparent;
-            color: #fff;
+            color: $font-white;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
-        
-            .previous-operand{
+            border-right: 1px solid rgba(48, 52, 54, 0.05);
+
+            .previous-operand {
                 color: rgba(255, 255, 255, .75);
                 font-size: 1.5rem;
             }
-        
-            .current-operand{
-                color: white;
+
+            .current-operand {
+                color: $font-white;
                 font-size: 2.5rem;
             }
         }
-    
-        .span-two{
+
+        .span-two {
             grid-column: span 2;
             background: rgba(0, 0, 0, 0.283)
         }
-    
-        > button {
+
+        >button {
             cursor: pointer;
             font-size: 20px;
             outline: none;
-            background:rgba(0, 0, 0, .05);
+            background: rgba(0, 0, 0, .05);
             border: none;
-    
-            color: white;
+
+            color: $font-white;
             user-select: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(48, 52, 54, 0.112);
+            border-right: 1px solid rgba(48, 52, 54, 0.112);
             transition: 0.5s;
-            
-            &:hover{
+
+            &:hover {
                 transition: 0s;
                 background-color: rgba(255, 255, 255, .05);
             }
-    
-            &:active{
-                background: #14FF47;
+
+            &:active {
+                background: $green;
                 color: #192F00;
                 font-size: 24px;
                 font-weight: 500;
@@ -115,7 +132,113 @@ body{
     }
 }
 
+/* MODAL ======================== */
+.modal-overlay {
+    width: 100%;
+    height: 100%;
 
+    background-color: rgba(0, 0, 0, 0.7);
 
+    position: fixed;
+    top: 0;
 
+    @include organize-center;
 
+    opacity: 0;
+    visibility: hidden;
+
+    z-index: 999;
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+
+        -webkit-animation: fade-in 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        animation: fade-in 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    }
+}
+
+.modal {
+    background: $dark-background;
+    padding: 2.4rem;
+
+    border-radius: 0.25rem;
+
+    position: relative;
+    z-index: 1;
+
+    #message {
+        color:$font-white;
+
+        max-width: 500px;
+
+        h2 {
+            margin-top: 0;
+
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.5rem;
+
+            margin-top: 0.5rem;
+        }
+
+        .input-modal {
+            margin-top: 1.2rem;
+
+            &.action {
+                @include organize-center;
+
+                .button {
+
+                    width: 50%;
+
+                    &.confirm {
+                        color: $green;
+                        text-decoration: none;
+                        border: 2px rgb(56, 129, 29) solid;
+                        border-radius: 0.25rem;
+                        background-color: rgba(0, 0, 0, 0.501);
+
+                        height: 50px;
+
+                        @include organize-center;
+
+                        opacity: 0.6;
+
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**
+ * ----------------------------------------
+ * animation fade-in for MODAL
+ * ----------------------------------------
+*/
+@-webkit-keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

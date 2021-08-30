@@ -1,5 +1,7 @@
 /* === Reset Global === */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   font-family: Gotham Rounded, sans-serif;
   font-weight: normal;
@@ -7,11 +9,12 @@
   margin: 0;
 }
 
+/* BODY ======================== */
 body {
   display: flex;
-  justify-content: center;
   align-items: center;
-  background-color: #091921;
+  justify-content: center;
+  background-color: #07141a;
   min-height: 100vh;
 }
 
@@ -37,15 +40,16 @@ body::after {
   clip-path: circle(20% at 70% 90%);
 }
 
+/* MAIN ======================== */
 .container {
   position: relative;
-  background: rgba(255, 255, 255, 0.05);
+  background-color: rgba(24, 26, 27, 0.05);
   border-radius: 6px;
   overflow: hidden;
   z-index: 10;
   backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.153);
+  border-left: 1px solid rgba(255, 255, 255, 0.153);
   box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -68,9 +72,9 @@ body::after {
   word-break: break-all;
   border: none;
   background: transparent;
-  color: #fff;
+  color: #e8e6e3;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(48, 52, 54, 0.05);
 }
 
 .container .calculator-grid .output .previous-operand {
@@ -79,7 +83,7 @@ body::after {
 }
 
 .container .calculator-grid .output .current-operand {
-  color: white;
+  color: #e8e6e3;
   font-size: 2.5rem;
 }
 
@@ -94,10 +98,10 @@ body::after {
   outline: none;
   background: rgba(0, 0, 0, 0.05);
   border: none;
-  color: white;
+  color: #e8e6e3;
   user-select: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(48, 52, 54, 0.112);
+  border-right: 1px solid rgba(48, 52, 54, 0.112);
   transition: 0.5s;
 }
 
@@ -107,8 +111,100 @@ body::after {
 }
 
 .container .calculator-grid > button:active {
-  background: #14FF47;
+  background: #87dd67;
   color: #192F00;
   font-size: 24px;
   font-weight: 500;
 }
+
+/* MODAL ======================== */
+.modal-overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 999;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  animation: fade-in 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.modal {
+  background: #0c0d0e;
+  padding: 2.4rem;
+  border-radius: 0.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.modal #message {
+  color: #e8e6e3;
+  max-width: 500px;
+}
+
+.modal #message h2 {
+  margin-top: 0;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.modal #message p {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.modal #message .input-modal {
+  margin-top: 1.2rem;
+}
+
+.modal #message .input-modal.action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal #message .input-modal.action .button {
+  width: 50%;
+}
+
+.modal #message .input-modal.action .button.confirm {
+  color: #87dd67;
+  text-decoration: none;
+  border: 2px #38811d solid;
+  border-radius: 0.25rem;
+  background-color: rgba(0, 0, 0, 0.501);
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+}
+
+.modal #message .input-modal.action .button.confirm:hover {
+  opacity: 1;
+}
+
+/**
+ * ----------------------------------------
+ * animation fade-in for MODAL
+ * ----------------------------------------
+*/
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/*# sourceMappingURL=styles.css.map */

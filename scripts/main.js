@@ -1,5 +1,4 @@
 // Global Variables
-
 const operationsArray = ['+', '-', '*', '÷'];
 
 class Calculator {
@@ -22,6 +21,82 @@ class Calculator {
     appendNumber(number){
         if (number === '.' && this.currentOperand.includes('.')) return
         this.currentOperand = this.currentOperand.toString() + number.toString()
+    }
+
+    chooseOperation(operation){
+        if (this.currentOperand === '') return
+        if (this.previousOperand !== '') {
+            this.compute()
+        }
+        if(operation === '/') operation = operationsArray[3]
+        this.operation = operation
+        this.previousOperand = this.currentOperand
+        this.currentOperand = ''
+    }
+
+    compute(){
+        let computation
+        const previous = parseFloat(this.previousOperand)
+        const current = parseFloat(this.currentOperand)
+
+        if (isNaN(previous) || isNaN(current)) return
+        
+        switch (this.operation) {
+            case operationsArray[0]: 
+                computation = previous + current
+                break
+            case operationsArray[1]: 
+                computation = previous - current
+                break
+            case operationsArray[2]: 
+                computation = previous * current
+                break
+            case operationsArray[3]:
+                if(current === 0) {
+                    this.modalOpen()
+                    this.clear()
+                    this.updateDisplay()
+                    return
+                }
+                computation = previous / current
+                break
+            default: 
+                return
+        }
+        
+        this.currentOperand = computation
+        this.operation = undefined 
+        this.previousOperand = ''
+    }
+
+    getDisplayNumber(number) { 
+        const stringNumber = number.toString()
+        const integerDigits = parseFloat(stringNumber.split('.')[0])
+        const decimalDigits = stringNumber.split('.')[1]
+        
+        let integerDisplay
+        if (isNaN(integerDigits)) {
+            integerDisplay = ''
+        } else {
+            integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 })
+        }
+
+        if (decimalDigits != null) {
+            return `${integerDisplay}.${decimalDigits}`
+        } else {
+            return integerDisplay
+        }
+    }
+
+    updateDisplay(){
+        this.currentOperandTextElement.innerText = 
+            this.getDisplayNumber(this.currentOperand)
+        if (this.operation != null){
+            this.previousOperandTextElement.innerText = 
+                `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
+        } else {
+            this.previousOperandTextElement.innerText = ''
+        }
     }
 
     // =================================== Keyboard Functions ===================================
@@ -70,84 +145,24 @@ class Calculator {
         })
     }
 
-    // ========================================================================================= 
-
-    chooseOperation(operation){
-        if (this.currentOperand === '') return
-        if (this.previousOperand !== '') {
-            this.compute()
-        }
-        if(operation === '/') operation = operationsArray[3]
-        this.operation = operation
-        this.previousOperand = this.currentOperand
-        this.currentOperand = ''
+    // =================================== Modal Error ===================================
+    modalOpen() {
+        document
+            .querySelector('.modal-overlay')
+            .classList
+            .add('active')
     }
 
-    compute(){
-        let computation
-        const previous = parseFloat(this.previousOperand)
-        const current = parseFloat(this.currentOperand)
+    modalClose() {
+        document
+            .querySelector('.modal-overlay')
+            .classList
+            .remove('active')
+    }    
 
-        if (isNaN(previous) || isNaN(current)) return
-        
-        switch (this.operation) {
-            case operationsArray[0]: 
-                computation = previous + current
-                break
-            case operationsArray[1]: 
-                computation = previous - current
-                break
-            case operationsArray[2]: 
-                computation = previous * current
-                break
-            case operationsArray[3]:
-                if(current === 0) {
-                    alert('Erro: Divisão por zero!')
-                    return
-                }
-                computation = previous / current
-                break
-            default: 
-                return
-        }
-        
-        this.currentOperand = computation
-        this.operation = undefined 
-        this.previousOperand = ''
-    }
-
-    getDisplayNumber(number) { 
-        const stringNumber = number.toString()
-        const integerDigits = parseFloat(stringNumber.split('.')[0])
-        const decimalDigits = stringNumber.split('.')[1]
-        
-        let integerDisplay
-        if (isNaN(integerDigits)) {
-            integerDisplay = ''
-        } else {
-            integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 })
-        }
-
-        if (decimalDigits != null) {
-            return `${integerDisplay}.${decimalDigits}`
-        } else {
-            return integerDisplay
-        }
-    }
-
-    updateDisplay(){
-        this.currentOperandTextElement.innerText = 
-            this.getDisplayNumber(this.currentOperand)
-        if (this.operation != null){
-            this.previousOperandTextElement.innerText = 
-                `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
-        } else {
-            this.previousOperandTextElement.innerText = ''
-        }
-    }
 }
 
-
+// =================================== HTML Variables ===================================
 const numberButtons = document.querySelectorAll('[data-number]')
 const operationButtons = document.querySelectorAll('[data-operation]')
 const equalsButton = document.querySelector('[data-equals]')
