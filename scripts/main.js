@@ -123,8 +123,6 @@ class Calculator {
         
         if(keys === enterDelete[0]) this.compute()
         else if(keys === enterDelete[1]) this.delete()
-    
-        this.updateDisplay()
     }
 
     pressKeyboard(){
