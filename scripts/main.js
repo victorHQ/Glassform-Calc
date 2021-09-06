@@ -1,7 +1,6 @@
-// Global Variables
-const operationsArray = ['+', '-', '*', '÷'];
+import Utils from "./utils.js";
 
-class Calculator {
+export default class Calculator {
     constructor(previousOperandTextElement, currentOperandTextElement){
         this.previousOperandTextElement = previousOperandTextElement
         this.currentOperandTextElement = currentOperandTextElement
@@ -53,7 +52,7 @@ class Calculator {
                 break
             case operationsArray[3]:
                 if(current === 0) {
-                    this.modalOpen()
+                    utils.modalOpen()
                     this.clear()
                     this.updateDisplay()
                     return
@@ -110,7 +109,7 @@ class Calculator {
     verifyInputNumbers(keys) {
         if (/[0-9]/.test(keys)) {
             this.appendNumber(keys)
-            this.updateDisplay() 
+            this.updateDisplay()
         }
     }
 
@@ -124,6 +123,7 @@ class Calculator {
         if(keys === enterDelete[0]) this.compute()
         else if(keys === enterDelete[1]) this.delete()
 
+        this.updateDisplay()
     }
 
     pressKeyboard(){
@@ -133,88 +133,60 @@ class Calculator {
             // These buttons cause a bug that when inserted in the event by "keydown" the calculator triggers "clear()" and locks.
             // Esses botões causam um bug que ao serem inseridos no evento pelo "keydown" a calculadora aciona o "clear()" e trava.
             let checkBugButtons = (arr, event) => arr.includes(event)
-            const bugButtons = ['CapsLock', 'Backspace', 'Control', 'ScrollLock', 'Space']
+            const bugButtons = ['CapsLock', 'Backspace', 'Control', 'ScrollLock', 'Space', 'Escape', 'NumLock']
 
             if(checkBugButtons(bugButtons, keys)) return
 
-            this.verifyClearButton(keys)
             this.verifyInputNumbers(keys)
             this.verifyInputOperation(keys)
             this.verifyEnterAndDelete(keys)
-            this.updateDisplay()
+            this.verifyClearButton(keys)
         })
     }
 
-    // =================================== Remove Focus from buttons ===================================
-    blurInput() {
-        window.onload = function () {
-            function blur(){
-                this.blur();
-            }
-    
-            for(let i = 0; i < buttons.length; i++){
-                buttons[i].addEventListener('click', blur)
-            }
-        }
-    }
+    // =================================== Display Keyboard Buttons ===================================
+    getDisplayKeyboardButtons(){
+        numberButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                this.appendNumber(button.innerText)
+                this.updateDisplay()
+            })
+        })
 
-    // =================================== Modal Error ===================================
-    modalOpen() {
-        document
-            .querySelector('.modal-overlay')
-            .classList
-            .add('active')
-    }
+        operationButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                this.chooseOperation(button.innerText)
+                this.updateDisplay()
+            })
+        })
 
-    modalClose() {
-        document
-            .querySelector('.modal-overlay')
-            .classList
-            .remove('active')
-    }    
+        equalsButton.addEventListener('click', button => {
+            this.compute()
+            this.updateDisplay()
+        })
+
+        allClearButton.addEventListener('click', button => {
+            this.clear()
+            this.updateDisplay()
+        })
+
+        deleteButton.addEventListener('click', button => {
+            this.delete()
+            this.updateDisplay()
+        })
+    } 
 }
 
 // =================================== HTML Variables ===================================
-const buttons = document.querySelectorAll('button')
 const numberButtons = document.querySelectorAll('[data-number]')
 const operationButtons = document.querySelectorAll('[data-operation]')
 const equalsButton = document.querySelector('[data-equals]')
 const deleteButton = document.querySelector('[data-delete]')
 const allClearButton = document.querySelector('[data-all-clear]')
-const previousOperandTextElement = document.querySelector('[data-previous-operand]')
-const currentOperandTextElement = document.querySelector('[data-current-operand]')
+const operationsArray = ['+', '-', '*', '÷']
 
-const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
+const utils = new Utils()
 
-calculator.pressKeyboard()
-calculator.blurInput()
 
-numberButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        calculator.appendNumber(button.innerText)
-        calculator.updateDisplay()
-    })
-})
 
-operationButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        calculator.chooseOperation(button.innerText)
-        calculator.updateDisplay()
-    })
-})
 
-equalsButton.addEventListener('click', button => {
-    calculator.compute()
-    calculator.updateDisplay()
-})
-
-allClearButton.addEventListener('click', button => {
-    calculator.clear()
-    calculator.updateDisplay()
-    
-})
-
-deleteButton.addEventListener('click', button => {
-    calculator.delete()
-    calculator.updateDisplay()
-})

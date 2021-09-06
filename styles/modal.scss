@@ -1,0 +1,103 @@
+@import './animations.scss';
+@import './mixinsAndVariables.scss';
+
+/* MODAL ======================== */
+.modal-overlay {
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.7);
+
+    position: fixed;
+    top: 0;
+
+    @include organize-center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    z-index: 999;
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+
+        -webkit-animation: fade-in 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        animation: fade-in 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    }
+}
+
+.modal {
+    background: $dark-background;
+    padding: 2.4rem;
+
+    border-radius: 0.25rem;
+
+    position: relative;
+    z-index: 1;
+
+    border: 3px solid;
+    border-image: conic-gradient(from var(--angle), #aa3dce00 15%, #d53abb, #E91E63, #FFC107) 1;
+
+    &:hover {
+        --angle: 0deg;
+
+        border-image: conic-gradient(from var(--angle), #aa3dce00 15%, #d53abb, #E91E63, #FFC107) 1;
+            
+        animation: 10s rotate linear infinite;
+    }
+
+    #message {
+        color:$font-white;
+
+        max-width: 500px;
+
+        h2 {
+            margin-top: 0;
+
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.5rem;
+
+            margin-top: 0.5rem;
+        }
+
+        .input-modal {
+            margin-top: 1.2rem;
+
+            &.action {
+                @include organize-center;
+
+                .button {
+                    width: 50%;
+
+                    &.confirm {
+                        color: rgb(123, 123, 123);
+                        text-decoration: none;
+                        border: 3px rgb(123, 123, 123) solid;
+
+                        &:hover{
+                            border-color: $font-white;
+                            color: $font-white;
+                        }
+                        
+                        background-color: rgba(0, 0, 0, 0.501);
+
+                        height: 50px;
+
+                        @include organize-center;
+
+                        opacity: 0.6;
+
+                        &:hover {
+                            opacity: .8;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

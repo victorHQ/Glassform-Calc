@@ -1,0 +1,45 @@
+/**
+ * ----------------------------------------
+ * animation fade-in for MODAL
+ * ----------------------------------------
+*/
+@-webkit-keyframes fade-in {
+    0% {
+        transform: translate3d(0, -30px, 0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        transform: translate3d(0, -30px, 0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
+
+/**
+ * ----------------------------------------
+ * animation rotate for MODAL
+ * ----------------------------------------
+*/
+@keyframes rotate {
+	to {
+		--angle: 360deg;
+	}
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}

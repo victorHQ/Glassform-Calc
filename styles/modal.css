@@ -1,0 +1,122 @@
+/**
+ * ----------------------------------------
+ * animation fade-in for MODAL
+ * ----------------------------------------
+*/
+
+@keyframes fade-in {
+  0% {
+    transform: translate3d(0, -30px, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+/**
+ * ----------------------------------------
+ * animation rotate for MODAL
+ * ----------------------------------------
+*/
+@keyframes rotate {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* MODAL ======================== */
+.modal-overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 999;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  animation: fade-in 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.modal {
+  background: #0c0d0e;
+  padding: 2.4rem;
+  border-radius: 0.25rem;
+  position: relative;
+  z-index: 1;
+  border: 3px solid;
+  border-image: conic-gradient(from var(--angle), #aa3dce00 15%, #d53abb, #E91E63, #FFC107) 1;
+}
+
+.modal:hover {
+  --angle: 0deg;
+  border-image: conic-gradient(from var(--angle), #aa3dce00 15%, #d53abb, #E91E63, #FFC107) 1;
+  animation: 10s rotate linear infinite;
+}
+
+.modal #message {
+  color: #e8e6e3;
+  max-width: 500px;
+}
+
+.modal #message h2 {
+  margin-top: 0;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.modal #message p {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.modal #message .input-modal {
+  margin-top: 1.2rem;
+}
+
+.modal #message .input-modal.action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal #message .input-modal.action .button {
+  width: 50%;
+}
+
+.modal #message .input-modal.action .button.confirm {
+  color: #7b7b7b;
+  text-decoration: none;
+  border: 3px #7b7b7b solid;
+  background-color: rgba(0, 0, 0, 0.501);
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+}
+
+.modal #message .input-modal.action .button.confirm:hover {
+  border-color: #e8e6e3;
+  color: #e8e6e3;
+}
+
+.modal #message .input-modal.action .button.confirm:hover {
+  opacity: .8;
+}
+/*# sourceMappingURL=modal.css.map */

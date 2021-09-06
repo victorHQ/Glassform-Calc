@@ -1,0 +1,11 @@
+// Variables ========================
+$dark-background: rgb(12, 13, 14);
+$green: rgb(135, 221, 103);
+$font-white: rgb(232, 230, 227);
+
+// Mixins =======================
+@mixin organize-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
