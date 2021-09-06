@@ -25,6 +25,11 @@ export default class Utils {
         modalConfirm.addEventListener('click', event => {
             this.modalClose();
         })
+
+        document.addEventListener('keydown', event => {
+            const keys = event.key
+            if (keys === 'Enter') this.modalClose();
+        })
     }
 }
 

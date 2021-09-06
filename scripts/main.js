@@ -14,6 +14,8 @@ export default class Calculator {
     }
 
     delete(){
+        if(this.currentOperand === '') this.previousOperand = this.previousOperand.toString().slice(0, -1)
+        else
         this.currentOperand = this.currentOperand.toString().slice(0, -1)
     }
 
@@ -23,7 +25,8 @@ export default class Calculator {
     }
 
     chooseOperation(operation){
-        if(operation === '/') operation = operationsArray[3]
+        if (operation === '/') operation = operationsArray[3]
+        if (this.operation != '' && this.previousOperand != '') this.operation = operation
         if (this.currentOperand === '') return
         if (this.previousOperand !== '') {
             this.compute()
@@ -107,7 +110,7 @@ export default class Calculator {
     }
 
     verifyInputNumbers(keys) {
-        if (/[0-9]/.test(keys)) {
+        if (/[0-9\.]/.test(keys)) {
             this.appendNumber(keys)
             this.updateDisplay()
         }
