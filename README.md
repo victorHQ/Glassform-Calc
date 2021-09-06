@@ -33,7 +33,7 @@
 <p align="center">
   A calculadora permite operações de divisão, multiplicação, adição e subtração, também permite a interação por teclado através de eventos.<br>
   Este é um projeto desenvolvido com o intuito de colocar meus estudos em prática e treinar minhas capacidades.<br>
-  <br>Segue tabela mostrando as teclas que a calculadora aceita:
+  <br>Segue a tabela mostrando as teclas que a calculadora aceita:
   
   <table border="1" align="center">
     <tr align="center">
@@ -42,31 +42,31 @@
     </tr>
     <tr align="center">
         <td>C</td>
-        <td>Clear</td>
+        <td title="Limpar a tela">Clear</td>
     </tr>
     <tr align="center">
         <td>Enter</td>
-        <td>= (Igual)</td>
+        <td title="Igual">=</td>
     </tr>
     <tr align="center">
         <td>Delete</td>
-        <td>DEL (Deletar)</td>
+        <td title="Deleta o carácter mais a direita">DEL</td>
     </tr>
     <tr align="center">
         <td>Shift + ou +</td>
-        <td>+ (Adição)</td>
+        <td title="Adição">+</td>
     </tr>
     <tr align="center">
         <td>-</td>
-        <td>- (Subtração)</td>
+        <td title="Subtração">-</td>
     </tr>
     <tr align="center">
         <td>Shift * ou *</td>
-        <td>* (Multiplicação)</td>
+        <td title="Multiplicação">*</td>
     </tr>
     <tr align="center">
         <td>/</td>
-        <td>÷ (Divisão)</td>
+        <td title="Divisão">÷</td>
     </tr>
   </table>
 </p>
@@ -75,7 +75,19 @@
   Instalação :rocket:
 </h2>
 <p align="center">
-  Baixe os arquivos, extraia em algum diretório de sua preferência e execute o arquivo "index.html".
+  Nota: Projeto feito em "modules", ou seja, precisa ser executado utilizando um server local de sua preferência. Você ainda poderá seguir o passo a passo para utilizar o live-server. Versões anteriores do projeto não necessitam disso, sendo assim, é necessário apenas baixar os arquivos e executar o "index.html", porém estão com o modal antigo. Você poderá acessá-las pelos commits anteriores.
+  
+  <h3 align="left">Passo a Passo</h3>
+  <ol>
+    <li>Instale o Node com o NPM pelo link: https://nodejs.org/en/download/</li>
+    <li>Depois baixe os arquivos do projeto e excute o terminal dentro da pasta onde contém os arquivos.</li>
+    <img width="75%" src="https://user-images.githubusercontent.com/34111368/132145712-ebcea350-9f51-4864-ae87-2e9a84f1483c.png">
+    <li>Agora execute os comandos no terminal:</li>
+    <ul>
+      <li title="Instala o live-server globalmente">npm install -g live-server</li>
+      <li title="Executa o live-server a partir do diretório aberto no terminal">live-server</li>
+    </ul>
+  </ol>
 </p>
 
 <h2 id="license" align="center">
