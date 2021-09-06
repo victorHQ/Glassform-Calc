@@ -75,7 +75,19 @@
   Instalação :rocket:
 </h2>
 <p align="center">
-  Baixe os arquivos, extraia em algum diretório de sua preferência e execute o arquivo "index.html".
+  Nota: Projeto feito em "modules", sendo assim, precisa ser executado utilizando um server local de sua preferência, ou poderá seguir o passo a passo para utilizar o live-server. Versões anteriores do projeto não necessitam disso, sendo necessário apenas baixar os arquivos e executar o "index.html", porém estão com o modal antigo. Poderá acessa-las pelos commits anteriores.
+  
+  <h3 align="left">Passo a Passo</h3>
+  <ol>
+    <li>Instale o Node com o NPM pelo link: https://nodejs.org/en/download/</li>
+    <li>Depois baixe os arquivos do projeto e excute o terminal dentro da pasta onde contém os arquivos.</li>
+    <img width="75%" src="https://user-images.githubusercontent.com/34111368/132145712-ebcea350-9f51-4864-ae87-2e9a84f1483c.png">
+    <li>Agora execute os comandos no terminal:</li>
+    <ul>
+      <li title="Instala o live-server globalmente">npm install -g live-server</li>
+      <li title="Executa o live-server a partir do diretório aberto no terminal">live-server</li>
+    </ul>
+  </ol>
 </p>
 
 <h2 id="license" align="center">
