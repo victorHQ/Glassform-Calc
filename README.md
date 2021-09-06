@@ -33,7 +33,7 @@
 <p align="center">
   A calculadora permite operações de divisão, multiplicação, adição e subtração, também permite a interação por teclado através de eventos.<br>
   Este é um projeto desenvolvido com o intuito de colocar meus estudos em prática e treinar minhas capacidades.<br>
-  <br>Segue tabela mostrando as teclas que a calculadora aceita:
+  <br>Segue a tabela mostrando as teclas que a calculadora aceita:
   
   <table border="1" align="center">
     <tr align="center">
@@ -42,31 +42,31 @@
     </tr>
     <tr align="center">
         <td>C</td>
-        <td>Clear</td>
+        <td title="Limpar a tela">Clear</td>
     </tr>
     <tr align="center">
         <td>Enter</td>
-        <td>= (Igual)</td>
+        <td title="Igual">=</td>
     </tr>
     <tr align="center">
         <td>Delete</td>
-        <td>DEL (Deletar)</td>
+        <td title="Deleta o carácter mais a direita">DEL</td>
     </tr>
     <tr align="center">
         <td>Shift + ou +</td>
-        <td>+ (Adição)</td>
+        <td title="Adição">+</td>
     </tr>
     <tr align="center">
         <td>-</td>
-        <td>- (Subtração)</td>
+        <td title="Subtração">-</td>
     </tr>
     <tr align="center">
         <td>Shift * ou *</td>
-        <td>* (Multiplicação)</td>
+        <td title="Multiplicação">*</td>
     </tr>
     <tr align="center">
         <td>/</td>
-        <td>÷ (Divisão)</td>
+        <td title="Divisão">÷</td>
     </tr>
   </table>
 </p>
@@ -75,7 +75,7 @@
   Instalação :rocket:
 </h2>
 <p align="center">
-  Nota: Projeto feito em "modules", sendo assim, precisa ser executado utilizando um server local de sua preferência, ou poderá seguir o passo a passo para utilizar o live-server. Versões anteriores do projeto não necessitam disso, sendo necessário apenas baixar os arquivos e executar o "index.html", porém estão com o modal antigo. Poderá acessa-las pelos commits anteriores.
+  Nota: Projeto feito em "modules", ou seja, precisa ser executado utilizando um server local de sua preferência. Você ainda poderá seguir o passo a passo para utilizar o live-server. Versões anteriores do projeto não necessitam disso, sendo assim, é necessário apenas baixar os arquivos e executar o "index.html", porém estão com o modal antigo. Você poderá acessá-las pelos commits anteriores.
   
   <h3 align="left">Passo a Passo</h3>
   <ol>
