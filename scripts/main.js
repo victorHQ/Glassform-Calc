@@ -7,6 +7,7 @@ export default class Calculator {
         this.clear()
     }
 
+    // =================================== Core Functions ===================================
     clear(){
         this.currentOperand = ''
         this.previousOperand = ''
@@ -26,11 +27,13 @@ export default class Calculator {
 
     chooseOperation(operation){
         if (operation === '/') operation = operationsArray[3]
-        if (this.operation != '' && this.previousOperand != '') this.operation = operation
+
+        if (this.previousOperand !== '') this.operation = operation
         if (this.currentOperand === '') return
-        if (this.previousOperand !== '') {
+        if (this.previousOperand !== '' && this.currentOperand !== '' ) {
             this.compute()
         }
+
         this.operation = operation
         this.previousOperand = this.currentOperand
         this.currentOperand = ''
@@ -57,7 +60,6 @@ export default class Calculator {
                 if(current === 0) {
                     utils.modalOpen()
                     this.clear()
-                    this.updateDisplay()
                     return
                 }
                 computation = previous / current
@@ -102,13 +104,6 @@ export default class Calculator {
     }
 
     // =================================== Keyboard Functions ===================================
-    verifyClearButton(keys) {
-        if (/[\c\C]/.test(keys)) {
-            this.clear()
-            this.updateDisplay()
-        }
-    }
-
     verifyInputNumbers(keys) {
         if (/[0-9\.]/.test(keys)) {
             this.appendNumber(keys)
@@ -118,15 +113,25 @@ export default class Calculator {
 
     verifyInputOperation(keys){
         if(/[\*\/\+\-]/.test(keys)) this.chooseOperation(keys)
+        this.updateDisplay()
     }
 
     verifyEnterAndDelete(keys){
         const enterDelete = ['Enter', 'Delete']
 
-        if(keys === enterDelete[0]) this.compute()
+        if(keys === enterDelete[0]) {
+            this.compute()
+        }
         else if(keys === enterDelete[1]) this.delete()
 
         this.updateDisplay()
+    }
+
+    verifyClearButton(keys) {
+        if (/[\c\C]/.test(keys)) {
+            this.clear()
+            this.updateDisplay()
+        }
     }
 
     pressKeyboard(){
@@ -190,6 +195,6 @@ const operationsArray = ['+', '-', '*', '÷']
 
 const utils = new Utils()
 
-
-
+utils.blurInput()
+utils.modalCloseConfirm()
 

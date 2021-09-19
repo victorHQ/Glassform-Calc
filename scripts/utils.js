@@ -12,7 +12,7 @@ export default class Utils {
         }
     }
 
-    // =================================== Modal Error ===================================
+    // =================================== Modal Error "0/0" ===================================
     modalOpen() {
         document.querySelector('.modal-overlay').classList.add('active')
     }
