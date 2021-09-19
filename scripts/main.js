@@ -32,7 +32,7 @@ export default class Calculator {
         if (this.currentOperand === '') return
         if (this.previousOperand !== '' && this.currentOperand !== '' ) {
             this.compute()
-        }
+        } 
 
         this.operation = operation
         this.previousOperand = this.currentOperand
@@ -41,9 +41,13 @@ export default class Calculator {
 
     compute(){
         let computation
+
+        if (this.previousOperand === '.') this.previousOperand = 0
+        if (this.currentOperand === '.') this.currentOperand = 0
+
         const previous = parseFloat(this.previousOperand)
         const current = parseFloat(this.currentOperand)
-
+        
         if (isNaN(previous) || isNaN(current)) return
         
         switch (this.operation) {
